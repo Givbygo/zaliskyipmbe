@@ -7,11 +7,11 @@ var cors = require('cors');
 
 
 var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 587,
+    host: "smtp-pulse.com",
+    port: 2525,
     auth: {
-      user: "9af78e4bf284a5",
-      pass: "ed21c21f310813"
+      user: "bogdanzaliskiy@gmail.com",
+      pass: "2StYDgQ3B9CDYnF"
     }
   });
 
@@ -30,8 +30,8 @@ router.post('/send', (req, res, next) => {
   var content = `name: ${name} \n email: ${email} \n message: ${message} `
 
   var mail = {
-    from: name,
-    to: 'bogdanzaliskiy@gmail.com',  // Change to email address that you want to receive messages on
+    from: email,
+    to: 'contact@zaliskyi.online',  // Change to email address that you want to receive messages on
     subject: 'New Message from Contact Form',
     text: content
   }
@@ -39,7 +39,7 @@ router.post('/send', (req, res, next) => {
   transport.sendMail(mail, (err, data) => {
     if (err) {
       res.json({
-        status: 'fail'
+        status: 'fail',
       })
     } else {
       res.json({
@@ -53,7 +53,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/', router)
-app.listen(3002)
+// app.listen(3002)
 exports.app = functions.https.onRequest(app);
 
 
