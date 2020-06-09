@@ -30,7 +30,7 @@ router.post('/send', (req, res, next) => {
   var content = `name: ${name} \n email: ${email} \n message: ${message} `
 
   var mail = {
-    from: email,
+    from: "contact@zaliskyi.online",
     to: 'contact@zaliskyi.online',  // Change to email address that you want to receive messages on
     subject: 'New Message from Contact Form',
     text: content
@@ -53,7 +53,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use('/', router)
-// app.listen(3002)
+app.listen(3002)
 exports.app = functions.https.onRequest(app);
 
 
